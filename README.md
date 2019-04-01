@@ -62,37 +62,37 @@ const user = require('../../models/dummyUser');
 Then we have a POST route found at /user/login and check that username and password match our dummy user:
 
 app.post('/user/login', (req, res, next) => {
-const { body } = req;
-const { username } = body;
-const { password } = body;
+	const { body } = req;
+	const { username } = body;
+	const { password } = body;
 
 if(username === user.username && password === user.password) {
 
 And if user’s login was successful we generate a JWT token for the user with a secret key:
 
 jwt.sign({user}, 'privatekey', { expiresIn: '1h' },(err, token) => {
-if(err) { console.log(err) }
-res.send(token);
-});
-} else {
-console.log('ERROR: Could not log in');
-}
+	if(err) { console.log(err) }
+		res.send(token);
+	});
+	} else {
+	console.log('ERROR: Could not log in');
+	}
 })
 The “privatekey” here is the secret key, “expiresIn” defines “exp” parameter. If an error is returned in the callback server is sending a Forbidden (403) code.
 
 When JWT is issued by authentification server and client send request to resouse server with the token attached, we need to verify it:
 
 jwt.verify(req.token, 'privatekey', (err, authorizedData) => {
-if(err){
-console.log('ERROR: Could not connect to the protected route');
-res.sendStatus(403);
-} else {
-res.json({
-message: 'Successful log in',
-authorizedData
-}); 
-console.log('SUCCESS: Connected to protected route');
-}
+	if(err){
+		console.log('ERROR: Could not connect to the protected route');
+		res.sendStatus(403);
+	} else {
+		res.json({
+		message: 'Successful log in',
+		authorizedData
+	}); 
+	console.log('SUCCESS: Connected to protected route');
+	}
 
 As for expiration date, you might need to implement some checking procedure. If token is expired you can ask user to login again, or create another access token after receiving refresh token. The first approach is more secure: for example, after few minutes of inactivity your bank account client will redirect you to login page.
 
