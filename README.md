@@ -9,8 +9,8 @@ JWT consists of three components: Header, Payload and Signature. Header and Payl
 
 The Header component contains two fields:
 {
-“typ” : “JWT”,
-“alg” : “HS256”
+	“typ” : “JWT”,
+	“alg” : “HS256”
 }
 
 The “typ” field specifies JWT object, the “alg” is preferred hashing algorithm to use to create JWT signature component. Dozen of algorithms are supported by different libraries, please visit https://jwt.io/#libraries for details.
