@@ -1,32 +1,32 @@
 # VS-JWT
-Token. JSON Web Token.
+## Token. JSON Web Token.
 
-JSON Web Token, or JWT, is a relatively simple way to securely exchanging data between authorized client  and server. Once User had sent his login and password to Authentification Server, it generates signed access token as JSON object and sends it back to client. When client issues request to Resourse Server it attaches JWT to header using a Bearer scheme. After validation check server accepts and processes request. Also JWT is a great technology for server-to-server authorization.
+JSON Web Token, or **JWT**, is a relatively simple way to securely exchanging data between authorized client  and server. Once User had sent his login and password to **Authentification Server**, it generates signed access token as JSON object and sends it back to **client**. When client issues request to **Resourse Server** it attaches JWT to header using a Bearer scheme. After validation check server accepts and processes request. Also JWT is a great technology for server-to-server authorization.
 
-What is it, exactly
+## What is it, exactly
 
-JWT consists of three components: Header, Payload and Signature. Header and Payload contains useful information and encoded with Base64URL algorithm. Signature is creating by taking encoded Header and Payload, secret key and an algorithm specified in Header. All three parts serialize into one string and separate with “.” symbols (for example AiLCJhbGciOiJIUzI1NiJ9.J1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYz.zN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM). At the server’s side JWT de-serialize using known secret key and then provide access to requested information.
+JWT consists of three components: Header, Payload and Signature. Header and Payload contains useful information and encoded with **Base64URL** algorithm. Signature is creating by taking encoded Header and Payload, secret key and an algorithm specified in Header. All three parts **serialize** into one string and separate with “.” symbols (for example *AiLCJhbGciOiJIUzI1NiJ9.J1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYz.zN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM*). At the server’s side JWT de-serialize using known secret key and then provide access to requested information.
 
 The Header component contains two fields:
-{
+*{
 	“typ” : “JWT”,
 	“alg” : “HS256”
-}
+}*
 
 The “typ” field specifies JWT object, the “alg” is preferred hashing algorithm to use to create JWT signature component. Dozen of algorithms are supported by different libraries, please visit https://jwt.io/#libraries for details.
 
 The Payload contains various data about the user and few standard fields. None of them are mandatory, though.
 
 For instance, Payload can store User’s ID, name and company’s position
-
+'''
 {
 	“UserID” : “16060131”,
 	“UserName” : “Booker DeWitt”,
 	“CompanyPos” : “admin”
 }
-
+'''
 and also reserved fields:
-
+'''
 iss (issuer) : Identifies principal that issued the JWT.
 sub (subject) : Identifies the subject of the JWT.
 aud (audience) : Identifies the recipients that the JWT is intended for.
@@ -34,7 +34,7 @@ exp (expiration time) : Identifies the expiration time on and after which the JW
 nbf (not before) : Identifies the time on which the JWT will start to be accepted for processing.
 iat (issued at) : Identifies the time at which the JWT was issued.
 Jti (JWT ID) : Case sensitive unique identifier of the token.
-
+'''
 To create Signature you need encoded Header and Payload, and also a secret key – only servers should have it. Then it has to be converted into bite array by using selected hashing algorithm.
 
 HMACSHA256(
