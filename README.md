@@ -3,7 +3,7 @@
 
 JSON Web Token, or **JWT**, is a relatively simple way to securely exchanging data between authorized client  and server. Once User had sent his login and password to **Authentification Server**, it generates signed access token as JSON object and sends it back to **client**. When client issues request to **Resourse Server** it attaches JWT to header using a Bearer scheme. After validation check server accepts and processes request. Also JWT is a great technology for server-to-server authorization.
 
-###### What is it, exactly
+### What is it, exactly
 
 JWT consists of three components: Header, Payload and Signature. Header and Payload contains useful information and encoded with **Base64URL** algorithm. Signature is creating by taking encoded Header and Payload, secret key and an algorithm specified in Header. All three parts **serialize** into one string and separate with “.” symbols (for example *AiLCJhbGciOiJIUzI1NiJ9.J1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYz.zN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM*). At the server’s side JWT de-serialize using known secret key and then provide access to requested information.
 
@@ -46,7 +46,7 @@ Usually JWT’s have an **expiration time** (*“exp”* property of the Payload
 
 It is important to store JWT in safe place inside an **HttpOnly cookie**. Also, keep in mind that JWT isn't encrypted and doesn’t designed as protected container for sensitive information.
 
-###### How to use it
+### How to use it
 
 First, you need to choose your perfect **JWT library** from those that available at https://jwt.io/#libraries. In general, the more greenlighted options it has, the better. Then, you have to create an **authorization server**. Create an empty solution and add a new ASP.NET Web application.
 
