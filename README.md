@@ -5,6 +5,8 @@ JSON Web Token, or **JWT**, is a relatively simple way to securely exchanging da
 
 ### What is it, exactly
 
+![alt text](https://raw.githubusercontent.com/vonsavoyen/VS-JWT/master/JWT%20Diagram.jpg)
+
 JWT consists of three components: Header, Payload and Signature. Header and Payload contains useful information and encoded with **Base64URL** algorithm. Signature is creating by taking encoded Header and Payload, secret key and an algorithm specified in Header. All three parts **serialize** into one string and separate with “.” symbols (for example *AiLCJhbGciOiJIUzI1NiJ9.J1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYz.zN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM*). At the server’s side JWT de-serialize using known secret key and then provide access to requested information.
 
 The Header component contains two fields:
