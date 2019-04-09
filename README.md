@@ -29,13 +29,13 @@ For instance, Payload can store User’s ID, name and company’s position
 ```
 and also reserved fields:
 
-iss (issuer) : Identifies principal that issued the JWT.
-sub (subject) : Identifies the subject of the JWT.
-aud (audience) : Identifies the recipients that the JWT is intended for.
-exp (expiration time) : Identifies the expiration time on and after which the JWT must not be accepted for processing.
-nbf (not before) : Identifies the time on which the JWT will start to be accepted for processing.
-iat (issued at) : Identifies the time at which the JWT was issued.
-Jti (JWT ID) : Case sensitive unique identifier of the token.
+- iss (issuer) : Identifies principal that issued the JWT.
+- sub (subject) : Identifies the subject of the JWT.
+- aud (audience) : Identifies the recipients that the JWT is intended for.
+- exp (expiration time) : Identifies the expiration time on and after which the JWT must not be accepted for processing.
+- nbf (not before) : Identifies the time on which the JWT will start to be accepted for processing.
+- iat (issued at) : Identifies the time at which the JWT was issued.
+- jti (JWT ID) : Case sensitive unique identifier of the token.
 
 To create **Signature** you need encoded Header and Payload, and also a secret key – only servers should have it. Then it has to be converted into bite array by using selected hashing algorithm.
 ```
